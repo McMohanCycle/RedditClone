@@ -5,7 +5,12 @@ import {Comment, Upvote} from '../assets/icons';
 import PROFILE_ICON_COLORS from '../assets/constants/ProfileIconColors';
 import moment from 'moment';
 
-const PostListItem = ({data, navigation, isTouchable = true}) => {
+const PostListItem = ({
+  data,
+  navigation,
+  isTouchable = true,
+  autoPlay = false,
+}) => {
   const {
     author,
     created,

@@ -5,7 +5,7 @@ import {
   FlatList,
   ActivityIndicator,
 } from 'react-native';
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {Common, Home as styles} from '../stylesheets/styles';
 import {Reddit, Refresh} from '../assets/icons';
 import {useDispatch, useSelector} from 'react-redux';
@@ -25,7 +25,20 @@ const Home = props => {
   } = useSelector(state => state.post);
   const {subreddits} = useSelector(state => state.user);
 
-  const [selectedFilter, setSelectedFilter] = useState('new');
+  const [selectedFilter, setSelectedFilter] = useState(reduxSelectedFilter);
+  const [currentViewableItem, setCurrentViewableItem] = useState({
+    isViewable: false,
+    key: null,
+  });
+
+  const onViewableItemsChanged = useCallback(({changed, viewableItems}) => {
+    console.log('Inside useCallback/viewableItems: ', viewableItems);
+    if (viewableItems.length)
+      setCurrentViewableItem({
+        isViewable: viewableItems[0].isViewable,
+        key: viewableItems[0].key,
+      });
+  }, []);
 
   useEffect(() => {
     if (subreddits.length) dispatch(getPosts(selectedFilter));
@@ -94,14 +107,23 @@ const Home = props => {
       </View>
       <SubredditPostsListHeader />
       <View style={Common.container}>
-        {isLoading || !posts.length ? (
+        {isLoading ? (
           <ActivityIndicator color={colors.REDDIT_RED} size="large" />
         ) : (
           <FlatList
+            viewabilityConfig={{
+              itemVisiblePercentThreshold: 100,
+              minimumViewTime: 2000,
+            }}
+            onViewableItemsChanged={onViewableItemsChanged}
             ListEmptyComponent={<EmptyState />}
             data={posts}
-            renderItem={({item}) => (
+            renderItem={({item, index}) => (
               <Post
+                autoPlay={
+                  currentViewableItem.key == index &&
+                  currentViewableItem.isViewable
+                }
                 key={item.data.id}
                 data={item.data}
                 navigation={props.navigation}
