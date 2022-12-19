@@ -1,9 +1,11 @@
 import {put, takeEvery} from 'redux-saga/effects';
 import types from './types';
 import {authorize} from 'react-native-app-auth';
+import url from '../../assets/constants/url';
+import tokens from '../../assets/constants/tokens';
 
 const fetchSubreddits = accessToken =>
-  fetch('https://oauth.reddit.com/subreddits/mine/subscriber', {
+  fetch(`${url.redditOAuthAPI}subreddits/mine/subscriber`, {
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${accessToken}`,
@@ -37,17 +39,17 @@ function* getSubreddits(accessToken) {
 
 function* getUserToken() {
   const config = {
-    redirectUrl: 'com.redditclone://oauth2redirect/reddit',
-    clientId: '1aaFDuy0oaLesoVGiL3G-w',
-    clientSecret: '',
+    redirectUrl: url.redirectUrl,
+    clientId: tokens.clientId,
+    clientSecret: tokens.clientSecret,
     scopes: ['identity', 'mysubreddits', 'read'],
     serviceConfiguration: {
-      authorizationEndpoint: 'https://www.reddit.com/api/v1/authorize.compact',
-      tokenEndpoint: 'https://www.reddit.com/api/v1/access_token',
+      authorizationEndpoint: url.authorizationEndpoint,
+      tokenEndpoint: url.tokenEndpoint,
     },
     customHeaders: {
       token: {
-        Authorization: 'Basic 1aaFDuy0oaLesoVGiL3G-w',
+        Authorization: `Basic ${tokens.clientId}`,
       },
     },
   };

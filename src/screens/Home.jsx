@@ -31,8 +31,8 @@ const Home = props => {
     key: null,
   });
 
+  // This function is used to check whether the current viewable item is in focus or not.
   const onViewableItemsChanged = useCallback(({changed, viewableItems}) => {
-    console.log('Inside useCallback/viewableItems: ', viewableItems);
     if (viewableItems.length)
       setCurrentViewableItem({
         isViewable: viewableItems[0].isViewable,
@@ -113,9 +113,9 @@ const Home = props => {
           <FlatList
             viewabilityConfig={{
               itemVisiblePercentThreshold: 100,
-              minimumViewTime: 2000,
+              minimumViewTime: 1000,
             }}
-            onViewableItemsChanged={onViewableItemsChanged}
+            onViewableItemsChanged={onViewableItemsChanged} //Checks focus of list items currently visible on the screen.
             ListEmptyComponent={<EmptyState />}
             data={posts}
             renderItem={({item, index}) => (

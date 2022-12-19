@@ -13,6 +13,7 @@ import PostListItem from '../components/Post';
 import CommentListItem from '../components/CommentListItem';
 import colors from '../assets/constants/colors';
 import {BackArrow} from '../assets/icons';
+import url from '../assets/constants/url';
 
 const Post = props => {
   const {navigation} = props;
@@ -28,7 +29,9 @@ const Post = props => {
     setIsLoading(true);
     try {
       const response = await fetch(
-        `https://oauth.reddit.com/${subredditName}/comments/?article=${id}&limit=15&depth=1`,
+        `${
+          url.redditOAuthAPI + subredditName
+        }/comments/?article=${id}&limit=15&depth=1`,
         {
           headers: {
             Authorization: `Bearer ${accessToken}`,

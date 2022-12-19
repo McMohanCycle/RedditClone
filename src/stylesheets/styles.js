@@ -127,7 +127,7 @@ export const Post = StyleSheet.create({
   },
   image: {
     width: '100%',
-    height: 10 * REM,
+    height: 12 * REM,
     borderRadius: REM,
     ...Common.mrgBtmHalfRem,
   },
