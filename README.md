@@ -4,6 +4,9 @@
 Reddit Clone using React Native and Reddit APIs that lets you login using your Reddit and view your subscribed subreddits.
 
 
+## Installation
+
+[Click to Download APK](https://github.com/McMohanCycle/RedditClone/raw/main/RedditClone.apk)
 
 
 ## Run Locally
