@@ -6,9 +6,10 @@ import {
   getSelectedSubreddit,
   getSubredditArray,
 } from './selector';
+import url from '../../assets/constants/url';
 
 const fetchPosts = (accessToken, subreddit, selectedFilter) =>
-  fetch(`https://oauth.reddit.com/${subreddit}/${selectedFilter}`, {
+  fetch(`${url.redditOAuthAPI + subreddit}/${selectedFilter}?limit=100`, {
     headers: {
       Authorization: `Bearer ${accessToken}`,
     },

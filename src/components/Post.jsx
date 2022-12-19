@@ -1,9 +1,12 @@
 import {View, Text, Image, TouchableOpacity} from 'react-native';
-import React from 'react';
+import React, {memo} from 'react';
 import {Common, Post as styles} from '../stylesheets/styles';
 import {Comment, Upvote} from '../assets/icons';
 import PROFILE_ICON_COLORS from '../assets/constants/ProfileIconColors';
 import moment from 'moment';
+import VideoPlayer from './VideoPlayer';
+
+const THUMBNAIL_TYPE = ['self', 'default', 'nsfw'];
 
 const PostListItem = ({
   data,
@@ -14,7 +17,8 @@ const PostListItem = ({
   const {
     author,
     created,
-    id,
+    is_video: isVideo,
+    media,
     num_comments: commentCount,
     subreddit_name_prefixed: subredditName,
     title,
@@ -49,10 +53,14 @@ const PostListItem = ({
   const PostMain = () => (
     <>
       <Text style={[Common.h3, Common.mrgBtmHalfRem]}>{title}</Text>
-      {thumbnail &&
-      thumbnail != 'self' &&
-      thumbnail != 'default' &&
-      thumbnail != 'nsfw' ? (
+      {isVideo ? (
+        <VideoPlayer
+          autoPlay={autoPlay}
+          hasTouchControls={!isTouchable}
+          media={media}
+          thumbnail={thumbnail}
+        />
+      ) : thumbnail && !THUMBNAIL_TYPE.includes(thumbnail) ? (
         <Image
           resizeMode="cover"
           source={{
@@ -102,4 +110,4 @@ const PostListItem = ({
   );
 };
 
-export default PostListItem;
+export default memo(PostListItem);
