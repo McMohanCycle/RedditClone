@@ -18,3 +18,22 @@ export const setLoading = () => {
     type: types.SET_LOADING,
   };
 };
+
+export const getSubreddits = () => {
+  return {
+    type: types.GET_SUBREDDIT,
+  };
+};
+
+export const setSubreddits = payload => {
+  return {
+    type: types.SET_SUBREDDIT,
+    payload,
+  };
+};
+
+export const clearUser = () => {
+  return {
+    type: types.CLEAR_USER,
+  };
+};

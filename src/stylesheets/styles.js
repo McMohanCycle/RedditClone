@@ -40,6 +40,9 @@ export const Common = StyleSheet.create({
   mrgBtmHalfRem: {
     marginBottom: 0.5 * REM,
   },
+  mrgRgt1Rem: {
+    marginRight: REM,
+  },
   mrgRgtHalfRem: {
     marginRight: 0.5 * REM,
   },
@@ -79,5 +82,59 @@ export const login = StyleSheet.create({
   },
   ctaText: {
     color: colors.DARK_GREY,
+  },
+});
+
+export const Home = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: colors.DARK_GREY,
+  },
+  header: {
+    padding: REM,
+    backgroundColor: colors.SEMI_GREY,
+  },
+  listHeader: {
+    paddingHorizontal: REM,
+    paddingBottom: REM,
+    backgroundColor: colors.SEMI_GREY,
+    borderBottomLeftRadius: REM,
+    borderBottomRightRadius: REM,
+  },
+  refreshButton: {
+    height: 2 * REM,
+    width: 2 * REM,
+    borderRadius: 0.5 * REM,
+    borderWidth: 1,
+    borderColor: colors.OFF_WHITE,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  dropdown: {
+    padding: 0.5 * REM,
+    width: 8 * REM,
+    backgroundColor: '#000',
+    borderRadius: REM,
+    paddingHorizontal: 0.5 * REM,
+  },
+});
+
+export const Post = StyleSheet.create({
+  container: {
+    padding: REM,
+    backgroundColor: colors.SEMI_GREY,
+    borderRadius: REM,
+  },
+  image: {
+    width: '100%',
+    height: 10 * REM,
+    borderRadius: REM,
+    ...Common.mrgBtmHalfRem,
+  },
+  profileIcon: {
+    height: 2 * REM,
+    width: 2 * REM,
+    borderRadius: REM,
+    ...Common.mrgRgtHalfRem,
   },
 });

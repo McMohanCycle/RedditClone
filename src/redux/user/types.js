@@ -3,6 +3,9 @@ const types = {
   GET_USER: 'GET_USER',
   SET_LOADING: 'SET_LOADING',
   SET_ERROR: 'SET_ERROR',
+  SET_SUBREDDIT: 'SET_SUBREDDIT',
+  GET_SUBREDDIT: 'GET_SUBREDDIT',
+  CLEAR_USER: 'CLEAR_USER',
 };
 
 export default types;

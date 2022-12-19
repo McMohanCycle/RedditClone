@@ -1,0 +1,2 @@
+const PROFILE_ICON_COLORS = ['#FFC847', '#FF8D80', '#BDF323', '#7AE3F9'];
+export default PROFILE_ICON_COLORS;

@@ -3,6 +3,7 @@ import types from './types';
 const initialState = {
   accessToken: null,
   tokenExpiry: null,
+  subreddits: [],
   isLoading: false,
   threwError: null,
 };
@@ -14,6 +15,11 @@ const userReducer = (state = initialState, action) => {
         ...state,
         ...action.payload,
       };
+    case types.SET_SUBREDDIT:
+      return {
+        ...state,
+        subreddits: [...action.payload],
+      };
     case types.SET_LOADING:
       return {
         ...state,
@@ -23,6 +29,14 @@ const userReducer = (state = initialState, action) => {
       return {
         ...state,
         threwError: action.threwError,
+      };
+    case types.CLEAR_USER:
+      return {
+        accessToken: null,
+        tokenExpiry: null,
+        subreddits: [],
+        isLoading: false,
+        threwError: null,
       };
 
     default:
